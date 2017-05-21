@@ -8,8 +8,11 @@ module.exports = function(app){
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({extended: true}));
 
+
+
+	//works!
 	//post = create
-	app.post('api/todos', function (req, res){	
+	app.post('/api/todos', function (req, res){	
 		var newTodo = Todos({
 			todo: req.body.todo,
 			notes: req.body.notes,
@@ -23,18 +26,20 @@ module.exports = function(app){
 
 	});
 
+	// works!
 	//get = read
 	//this will show all of the current todos
-	app.get('api/todos', function (req, res){
-		Todos.find({}, 'todo', function(err, results){
+	app.get('/api/todos', function (req, res){
+		Todos.find({}, function(err, results){
 			if (err) throw err;
 			res.send('successfully got the todos!'
 			 + results);
 		});
 	})
 
+	//getting the successful message, but it doesn't update
 	//put/patch = update
-	app.put('api/todos', function(req, res){
+	app.put('/api/todos', function(req, res){
 		Todos.findByIdAndUpdate(req.body.id, {
 			todo: req.body.todo,
 			notes: req.body.notes,
@@ -46,8 +51,11 @@ module.exports = function(app){
 		});
 	});
 
+	// not sure I am putting this in correctly because
+	// I get an error back. probably written wrong or 
+	// passing in the wrong info.
 	//delete = delete
-	app.delete('/api/todo', function(req, res){
+	app.delete('/api/todos/:id', function(req, res){
 		Todos.findByIdAndRemove(req.body.id, function (err){
 			if (err) throw err;
 			res.send('Successfully deleted the todo item');
