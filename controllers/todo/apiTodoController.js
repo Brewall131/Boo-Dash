@@ -1,7 +1,7 @@
 //I Put some messages into the asynchronous callbacks to 
 //help make testing easier!
 
-var Todos = require ('../model/todomodel');
+var Todos = require ('../../model/todoModel');
 var bodyParser = require ('body-parser');
 
 module.exports = function(app){

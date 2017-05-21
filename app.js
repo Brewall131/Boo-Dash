@@ -6,8 +6,19 @@ var mongoose = require ('mongoose');
 
 //requiring my own instructions
 var config = require('./config');
-var setupController = require('./controllers/setupController');
-var apiController = require ('./controllers/apiController');
+
+//todo resources
+var todoSetupController = require('./controllers/todo/todoSetupController');
+var apiTodoController = require ('./controllers/todo/apiTodoController');
+
+//need resources
+var needSetupController = require('./controllers/need/needSetupController');
+var apiNeedController = require ('./controllers/need/apiNeedController');
+
+//article resources
+
+//randomThought resources
+
 
 //setting the port to a preset deployed location 
 //or 3000 on localhost
@@ -21,7 +32,13 @@ mongoose.Promise = global.Promise;
 mongoose.connect(config.getDbConnectionString());
 //send app through to the setupController so that 
 //it will run the function of listening for the api call
-setupController(app);
-apiController(app);
+
+//run the function to listen for the api calls for todos
+todoSetupController(app);
+apiTodoController(app);
+
+//run the function for the need api calls
+needSetupController(app);
+apiNeedController(app);
 
 app.listen(port);

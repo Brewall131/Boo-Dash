@@ -1,11 +1,11 @@
 //use the setup to create new schemas
-var Todos = require('../model/todomodel');
+var Todos = require('../../model/todoModel');
 
 //will export a function that will take the app, and when
 //a get request is sent to setupTodos, this will run
 module.exports = function (app) {
 	app.get('/api/setupTodos', function (req, res){
-		//seed database for testing only i think?
+		//seed database 
 		var starterTodos = [
 			{
 				todo: 'Get food for Ben',
